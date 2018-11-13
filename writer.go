@@ -79,11 +79,7 @@ func WriteStream(reader io.Reader, dir string, batchSize int, lineToKeyed func(s
 		return err
 	}
 
-	// Open Badger database from directory
-	opts := badger.DefaultOptions
-	opts.Dir = dir
-	opts.ValueDir = dir
-	db, err := badger.Open(opts)
+	db, err := openDB(dir)
 	if err != nil {
 		return err
 	}
